@@ -1,7 +1,7 @@
 I. Lý thuyết
 + --: dùng để chỉ phần còn lsji của truy vấn đc xem như comment
 + OR 1=1: luôn đúng -> trả về all iterm (nên cận thận vì nó can vô tình update hoặc xóa data
-II. Lap
+II. Lab: SQL injection vulnerability in WHERE clause allowing retrieval of hidden data
 This lab contains a SQL injection vulnerability in the product category filter. When the user selects a category, the application carries out a SQL query like the following:
 
 SELECT * FROM products WHERE category = 'Gifts' AND released = 1
