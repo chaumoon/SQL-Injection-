@@ -30,4 +30,22 @@ https://portswigger.net/academy/labs/launch/5aeeac77d52d55cdff3f9a5d86d050c9a77e
 ![image](https://github.com/bangngoc116/SQL-Injection-/assets/127403046/8c7db2d6-426c-4ed4-876a-86b58ed091bd)<br>
 
 Cookie: TrackingId=cokrQmPGjyNp6yK5' and (select substring(password,2,1) from users where username='administrator')='§a§'-- <br>
--> tiếp tục đến khi tìm đc toàn bộ mật khẩu: pduzuqxql3l3z6bguzec
+-> tiếp tục đến khi tìm đc toàn bộ mật khẩu: pduzuqxql3l3z6bguzec<br>
+
+III. Error-based SQL injection<br>
+1. Lý thuyết<br>
+- nơi bạn can xài tin nhắn lỗi để trích xuất hoặc suy ra dữ liệu nhạy cảm từ cơ sở dữ liệu dù trong ngữ cảnh mù
+- phụ thuộc cấu hình database và loại lỗi bạn can gây ra:<br>
+  + khiến app trả về phản hồi lỗi cụ thể dựa trên kết quả biểu thức bool
+  + kích hoạt thông báo lỗi xuất data đc truy vấn trả về, biến vul mù thành can thấy được<br>
+
+IV. Exploiting blind SQL injection by triggering conditional errors<br>
+1. Lý thuyết<br>
+- dùng khi tiêm điều kiện bool khác nhau ko trả về phản hồi khác nhau
+- xài cách: sửa truy vấn làm lỗi database chỉ khi đk đúng, thg thì lỗi database sẽ gây ra các phản hồi app khác nhau
+- VD:<br>
+xyz' AND (SELECT CASE WHEN (1=2) THEN 1/0 ELSE 'a' END)='a<br>
+xyz' AND (SELECT CASE WHEN (1=1) THEN 1/0 ELSE 'a' END)='a<br>
+- xài CASE: check điều kiện và trả về 1 biểu thức khác phụ thuộc vào biểu thức đúng hay ko: BT1: ko có lỗi, BT2: lỗi chia cho 0
+- -> dùng để check khi điều kiện tiêm là đúng: xyz' AND (SELECT CASE WHEN (Username = 'Administrator' AND SUBSTRING(Password, 1, 1) > 'm') THEN 1/0 ELSE 'a' END FROM Users)='a
+- 
