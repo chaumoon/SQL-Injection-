@@ -1,3 +1,8 @@
+1. Lý thuyết<br>
+- ngôn ngữ SQL đc triển khai theo cách giống nhau trên các nền tảng database phổ biến, nhiều cách để pháp hiện và khai thác vul tiêm SQL hoạt động giống nhau trên các loại database khác nhau
+- tuy nhiên vẫn tồn tại sự khác nhau (đọc thêm: SQL injection cheat sheet)
+- sau khi xác định vul tiêm SQL, lấy in4 từ database là hữu ích để khai thác vul<br>
+
 I. Querying the database type and version<br>
 1. Lý thuyết<br>
 + Microsoft, MySQL	SELECT @@version
